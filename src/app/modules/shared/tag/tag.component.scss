@@ -1,0 +1,43 @@
+.tag {
+	@apply  w-auto  justify-center inline-block h-[35px] mr-4 mt-2 rounded-[4px] cursor-pointer duration-200 py-4 relative;
+	&:hover{
+		@apply shadow-lg shadow-indigo-500/25 duration-200
+	}
+}
+
+.dark{
+	@apply bg-mainPurple;
+	&:hover{
+		@apply shadow-lg shadow-indigo-500/25 duration-200
+	}
+	.tag__title{
+		@apply text-white;
+	}
+	i{
+		@apply text-white duration-100;
+		&:hover{
+			@apply text-primaryOpacity duration-100;
+		}
+	}
+}
+
+.light{
+	@apply bg-lightBLue text-mainPurple;
+
+	i{
+		@apply text-black duration-100;
+		&:hover{
+			@apply text-primaryOpacity duration-100;
+		}
+	}
+}
+
+.tag__content{
+	@apply h-full flex items-center;
+}
+.tag__title {
+	@apply  text-sm text-center leading-4 h-full flex items-center justify-center
+}
+.tag__close{
+	@apply absolute right-0 top-[7px];
+}
