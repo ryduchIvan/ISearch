@@ -1,0 +1,17 @@
+.menu{
+	@apply pt-[140px] px-12 h-full border-r
+}
+.menu__content {
+}
+.menu__logo {
+}
+.menu__nav {
+}
+.menu__list {
+}
+.menu__link {
+	@apply mb-8 text-3xl  flex items-center border-b border-black pb-4 text-blue-200;
+	a{
+		@apply ml-3
+	}
+}

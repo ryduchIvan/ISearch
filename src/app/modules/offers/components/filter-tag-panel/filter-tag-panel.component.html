@@ -1,0 +1,11 @@
+<div class="filter-tag-panel">
+	<div class="filter-tag-panel__content">
+		<app-tag *ngFor="let tag of tags;" 
+			[title]="tag.title" 
+			[id]="tag.id" 
+			[isClose]="true"  
+			(removeTag)="removeFilterTag($event)"
+			[variant]="'light'"
+			></app-tag>
+	</div>
+</div>
