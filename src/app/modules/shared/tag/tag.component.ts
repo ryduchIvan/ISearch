@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { actionAddFilter, actionRemoveFilter } from 'app/modules/offers/store/action/filter.action';
 import { ITag } from '../types/tag.interface';
 
 @Component({
@@ -28,7 +30,7 @@ export class TagComponent {
     let tagForRemove = {
       title:this.title,
       id: this.id,
-      kind:this.kind
+      kind: this.kind
     }
     this.removeTag.emit(tagForRemove)
 

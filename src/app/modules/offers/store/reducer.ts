@@ -58,7 +58,32 @@ const initialState: IofferInitialState = {
 		  }
 	],
 	filters: {
-		tags: [],
+		tags: [
+			{
+				title: "Java",
+				id: uniqId(),
+				kind: "Search by location"
+			},
+			{
+				title: "Java",
+				id: uniqId(),
+				kind: "Search by location"
+			},
+			{
+				title: "Java",
+				id: uniqId(),
+				kind: "Search by location"
+			},			{
+				title: "Java",
+				id: uniqId(),
+				kind: "Search by location"
+			},
+			{
+				title: "Java",
+				id: uniqId(),
+				kind: "Search by location"
+			}
+		],
 		filterList: [
 			{
 				kind: "Search by languages",
@@ -202,16 +227,13 @@ const offersReducer = createReducer(
 				id: action.tag.id,
 				kind: action.kind
 			}
-			console.log(newData)
-			const actionKindKey = Object.keys(EFilterKind).find(key => {
-				return key === action.kind
-			});
+			let enumKey = action.kind.replace(/\s+/g, "_").toUpperCase() as keyof typeof EFilterKind
 			return 	{
 				...state,
 				filters: {
 					tags: [...state.filters.tags, newData],
 					filterList: state.filters.filterList.map((item) => {
-						if (actionKindKey) {
+						if (item.kind === EFilterKind[enumKey]) {
 							item = {
 								kind: item.kind,
 								tags: item.tags.filter(item => item.id !== action.tag.id)
@@ -226,12 +248,14 @@ const offersReducer = createReducer(
 	on(
 		actionRemoveFilter,
 		(state, action) => {
+			console.log(action)
+			let enumKey = action.tag.kind.replace(/\s+/g, "_").toUpperCase() as keyof typeof EFilterKind
 			return {
 				...state,
 				filters: {
 					tags: state.filters.tags.filter(item => item.id !== action.tag.id),
 					filterList: state.filters.filterList.map(item =>{
-						if (item.kind === EFilterKind[action.tag.kind as keyof typeof EFilterKind]) {
+						if (item.kind === EFilterKind[enumKey]) {
 							const newTags = [action.tag, ...item.tags]
 	
 							return {...item, tags: newTags}
@@ -252,9 +276,12 @@ const offersReducer = createReducer(
 	on(
 		actionOfferSearch,
 		(state, action) => {
+			console.log(action.title)
 			return {
 				...state,
-				offers: state.offers.filter(item => item.title.includes(action.title))
+				offers: state.offers.filter(item => {
+					return item.title.includes(action.title)
+				})
 			}
 		}
 	)

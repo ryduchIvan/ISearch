@@ -1,0 +1,9 @@
+.filter-tag-panel {
+	@apply mb-4 rounded-sm bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-700 px-2 pb-2;
+}
+.filter-tag-panel__content {
+	@apply  flex  justify-between
+}
+.filter-tag-panel__close{
+	@apply overflow-visible cursor-pointer
+}

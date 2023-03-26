@@ -1,12 +1,16 @@
 <div class="filter-tag-panel">
 	<div class="filter-tag-panel__content">
-		<app-tag *ngFor="let tag of tags;" 
+		<div class="filter-tag__palel__tags">
+			<app-tag *ngFor="let tag of tags;" 
 			[title]="tag.title" 
 			[id]="tag.id" 
-			[isClose]="true"  
-			[kind]="tag.kind"
+			[isClose]="true" 
+			[kind]="tag.kind" 
 			(removeTag)="removeFilterTag($event)"
 			[variant]="'light'"
-			></app-tag>
+			>
+			</app-tag>
+		</div>
+			<mat-icon class="filter-tag-panel__close"> cancel_presentation</mat-icon>
 	</div>
 </div>

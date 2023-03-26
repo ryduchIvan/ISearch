@@ -16,8 +16,9 @@ export class FilterTagPanelComponent {
   }
 
   removeFilterTag(tag: ITagWithKind){
+    console.log(this.tags)
     this.store.dispatch(actionRemoveFilter({
-      tag: tag,
+      tag: tag
     }))
   }
 }
