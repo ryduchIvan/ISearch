@@ -9,6 +9,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 //Core
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 //Instruments
 import { OfferGuard } from './guard/offer.guard';
@@ -65,7 +66,8 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     CdkAccordionModule,
-    StoreModule.forFeature("offers", reducersOffers)
+    StoreModule.forFeature("offers", reducersOffers),
+    FormsModule
   ]
 })
 export class OffersModule { }

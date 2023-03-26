@@ -10,10 +10,15 @@ export const offersSelector = createSelector(
 
 export const filtersSelector = createSelector(
   FeatureSelector,
-  state => state.filters || { tags: [] }
+  state => state.filters
 );
 
-export const tagsSelector = createSelector(
+export const filterTagsSelector = createSelector(
   filtersSelector,
-  filters => filters.tags || []
+  filters => filters.tags
+);
+
+export const filterListSelector = createSelector(
+  filtersSelector,
+  filters => filters.filterList
 );

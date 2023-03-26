@@ -3,14 +3,14 @@
 
 		<mat-form-field class="w-full">
 			<mat-label>Search offer</mat-label>
-			<input matInput placeholder="For example: Senior c++" >
+			<input matInput placeholder="For example: Senior С++" (input)="searchOffer($event)">
 		  </mat-form-field>
 		  <div *ngIf="isTagPanel" class="filter__tag-panel">
 			<app-filter-tag-panel [tags]="$storeTags | async"></app-filter-tag-panel>
 		  </div>
 
 		  <cdk-accordion class="filter__accordion">
-				<app-filter-item *ngFor="let filter of filterList.list; index as i" [data]="filter"></app-filter-item>
+				<app-filter-item *ngFor="let filter of $filterList | async; index as i" [data]="filter"></app-filter-item>
 		  </cdk-accordion>
 
 	</div>

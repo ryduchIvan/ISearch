@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ITag } from 'app/modules/shared/types/tag.interface';
+import { ITag, ITagWithKind } from 'app/modules/shared/types/tag.interface';
 import { actionRemoveFilter } from '../../store/action/filter.action';
 
 @Component({
@@ -9,16 +9,15 @@ import { actionRemoveFilter } from '../../store/action/filter.action';
   styleUrls: ['./filter-tag-panel.component.scss']
 })
 export class FilterTagPanelComponent {
-  @Input () tags: ITag[] | null
+  @Input () tags: ITagWithKind[] | null
 
   constructor(private store: Store){
 
   }
 
-  removeFilterTag(id: string){
-    console.log(id)
+  removeFilterTag(tag: ITagWithKind){
     this.store.dispatch(actionRemoveFilter({
-      id: id
+      tag: tag,
     }))
   }
 }

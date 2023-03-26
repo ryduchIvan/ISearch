@@ -1,7 +1,7 @@
 <section class="offers">
 	<div class="offers__content">
 		<div class="offers__cards">
-			<app-offer-item *ngFor="let offer of offers" [offer]="offer"></app-offer-item>
+			<app-offer-item *ngFor="let offer of $offers | async" [offer]="offer"></app-offer-item>
 		</div>
 	</div>
 </section>

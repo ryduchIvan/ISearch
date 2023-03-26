@@ -14,7 +14,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.router)
   }
 
   unMuteVideo(video: HTMLVideoElement){
