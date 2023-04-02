@@ -1,4 +1,4 @@
-<div class="filter-tag-panel">
+<div class="filter-tag-panel" >
 	<div class="filter-tag-panel__content">
 		<div class="filter-tag__palel__tags">
 			<app-tag *ngFor="let tag of tags;" 
@@ -11,6 +11,6 @@
 			>
 			</app-tag>
 		</div>
-			<mat-icon class="filter-tag-panel__close"> cancel_presentation</mat-icon>
+			<mat-icon class="filter-tag-panel__close" (click)="closeTagPanel()"> cancel_presentation</mat-icon>
 	</div>
 </div>

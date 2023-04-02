@@ -19,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+//Effects
+import { OfferEffects } from './modules/offers/store/effect/offerEffects';
+import { FilterEffects } from './modules/offers/store/effect/filterEffects';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([OfferEffects, FilterEffects]),
     BrowserAnimationsModule,
     AuthModule,
     MatIconModule,

@@ -13,22 +13,22 @@ export class FilterComponent implements OnInit {
   $filterList: Observable<any>;
   $storeTags!: Observable<ITagWithKind[]>;
   isTagPanel: boolean = false 
-
+  search: string = "";
+  searchedOffers: ITagWithKind[] = [];
   constructor(private store: Store){
     this.$storeTags = this.store.pipe(select(filterTagsSelector)) as Observable<ITagWithKind[]>;
     this.$filterList = this.store.pipe(select(filterListSelector)) as Observable<any>;
   }
 
   ngOnInit(): void {
-
-    this.$storeTags.subscribe(storeTag => this.isTagPanel = storeTag.length > 0)
+    this.$storeTags.subscribe(storeTag => {
+      this.isTagPanel = storeTag.length > 0
+    })
   }
 
   searchOffer(event: any){
-    const searchTerm = (event.target as HTMLInputElement).value
+    const searchTerm = (event.target as HTMLInputElement).value;
 
-    this.store.dispatch(actionOfferSearch({
-      title: searchTerm
-    }))
+    this.search = searchTerm
   }
 }

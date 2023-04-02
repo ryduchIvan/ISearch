@@ -1,9 +1,10 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { actionAddFilter, actionGetFilterList, actionRemoveFilter } from "./action/filter.action";
+import { actionAddFilter, actionGetFilterList, actionRemoveAllFilter, actionRemoveFilter, addFilterSuccess, removeAllFilterSuccess, removeFilterSuccess } from "./action/filter.action";
 import { IofferInitialState } from "./types/action.types";
 import * as uniqId from 'uniqid'
 import { EFilterKind } from "../types/filter/filter.enums";
-import { actionOfferSearch } from "./action/offer.action";
+import { actionOfferSearch, offerSearchSuccess } from "./action/offer.action";
+import { ITag } from "app/modules/shared/types/tag.interface";
 const initialState: IofferInitialState = {
 	offers: [
 		{
@@ -59,30 +60,6 @@ const initialState: IofferInitialState = {
 	],
 	filters: {
 		tags: [
-			{
-				title: "Java",
-				id: uniqId(),
-				kind: "Search by location"
-			},
-			{
-				title: "Java",
-				id: uniqId(),
-				kind: "Search by location"
-			},
-			{
-				title: "Java",
-				id: uniqId(),
-				kind: "Search by location"
-			},			{
-				title: "Java",
-				id: uniqId(),
-				kind: "Search by location"
-			},
-			{
-				title: "Java",
-				id: uniqId(),
-				kind: "Search by location"
-			}
 		],
 		filterList: [
 			{
@@ -220,68 +197,38 @@ const initialState: IofferInitialState = {
 const offersReducer = createReducer(
 	initialState,
 	on(
-		actionAddFilter,
+		addFilterSuccess,
 		(state, action) => {
-			const newData = {
-				title: action.tag.title,
-				id: action.tag.id,
-				kind: action.kind
-			}
-			let enumKey = action.kind.replace(/\s+/g, "_").toUpperCase() as keyof typeof EFilterKind
-			return 	{
+			return {
 				...state,
-				filters: {
-					tags: [...state.filters.tags, newData],
-					filterList: state.filters.filterList.map((item) => {
-						if (item.kind === EFilterKind[enumKey]) {
-							item = {
-								kind: item.kind,
-								tags: item.tags.filter(item => item.id !== action.tag.id)
-							}
-						}
-						return item
-					})
-				}
+				filters: action.filtres
 			}
 		}
 	),
 	on(
-		actionRemoveFilter,
+		removeFilterSuccess,
 		(state, action) => {
-			console.log(action)
-			let enumKey = action.tag.kind.replace(/\s+/g, "_").toUpperCase() as keyof typeof EFilterKind
-			return {
+			return{
 				...state,
-				filters: {
-					tags: state.filters.tags.filter(item => item.id !== action.tag.id),
-					filterList: state.filters.filterList.map(item =>{
-						if (item.kind === EFilterKind[enumKey]) {
-							const newTags = [action.tag, ...item.tags]
-	
-							return {...item, tags: newTags}
-						}
-						return item
-					})
-				}
+				filters: action.filtres
 			}
 		}
 	),
 	on(
-		actionGetFilterList,
-		(state) => ({
-			...state
-			///
-		})
-	),
-	on(
-		actionOfferSearch,
+		removeAllFilterSuccess,
 		(state, action) => {
-			console.log(action.title)
 			return {
 				...state,
-				offers: state.offers.filter(item => {
-					return item.title.includes(action.title)
-				})
+				filters: action.filtres
+			}
+		}
+	),
+	on(
+		offerSearchSuccess,
+		(state, action) => {
+			return {
+				...state,
+				offers: action.searchedOffers
 			}
 		}
 	)

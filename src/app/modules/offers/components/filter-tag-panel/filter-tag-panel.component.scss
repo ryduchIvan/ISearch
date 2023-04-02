@@ -5,5 +5,5 @@
 	@apply  flex  justify-between
 }
 .filter-tag-panel__close{
-	@apply overflow-visible cursor-pointer
+	@apply overflow-visible cursor-pointer text-blue-200 font-extralight mt-1
 }
